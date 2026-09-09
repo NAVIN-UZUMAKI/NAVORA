@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Settings, User, Volume2, VolumeX, RotateCcw, Download, Database, ShieldCheck, Check, Compass, Sparkles } from 'lucide-react';
+import { Settings, User, Volume2, VolumeX, RotateCcw, Download, Database, ShieldCheck, Check, Compass, } from 'lucide-react';
 import { useNavora } from '../../context/useNavora';
 import { useGuide } from '../../context/useGuide';
 import { AuraAvatar } from '../guide/AuraAvatar';

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  FolderKanban, 
-  Plus, 
-  Target, 
-  CheckCircle2, 
-  Clock, 
-  Sparkles,
-  ChevronRight,
-  ShieldAlert
+import {
+  FolderKanban,
+  Target,
 } from 'lucide-react';
-import { useNavora } from '../../context/useNavora';
 
 interface SubTask {
   id: string;
@@ -75,7 +68,6 @@ const INITIAL_PROJECTS: Project[] = [
 ];
 
 export const ProjectsView: React.FC = () => {
-  const { user } = useNavora();
   const [projects, setProjects] = useState<Project[]>(INITIAL_PROJECTS);
   const [activeProjectId, setActiveProjectId] = useState<string>('proj_1');
 
@@ -83,21 +75,36 @@ export const ProjectsView: React.FC = () => {
     setProjects((prev) =>
       prev.map((proj) => {
         if (proj.id !== projectId) return proj;
+
         const updated = proj.subtasks.map((st) =>
-          st.id === subtaskId ? { ...st, completed: !st.completed } : st
+          st.id === subtaskId
+            ? { ...st, completed: !st.completed }
+            : st
         );
+
         return { ...proj, subtasks: updated };
       })
     );
   };
 
-  const activeProject = projects.find((p) => p.id === activeProjectId) || projects[0];
-  const activeCompleted = activeProject.subtasks.filter((s) => s.completed).length;
+  const activeProject =
+    projects.find((p) => p.id === activeProjectId) || projects[0];
+
+  const activeCompleted = activeProject.subtasks.filter(
+    (s) => s.completed
+  ).length;
+
   const activeTotal = activeProject.subtasks.length;
-  const activePercent = Math.round((activeCompleted / activeTotal) * 100);
+
+  const activePercent = Math.round(
+    (activeCompleted / activeTotal) * 100
+  );
 
   return (
-    <div data-tutorial="projects-view" className="space-y-6 animate-fadeIn pb-16 lg:pb-8">
+    <div
+      data-tutorial="projects-view"
+      className="space-y-6 animate-fadeIn pb-16 lg:pb-8"
+    >
       {/* Header */}
       <div className="hud-panel rounded-2xl p-6 border-chakra-500/40 relative overflow-hidden">
         <div className="hud-corner-tl" />
@@ -108,15 +115,18 @@ export const ProjectsView: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-shinobi-900 border border-chakra-500/40 flex items-center justify-center text-chakra-400 shadow-chakra-sm">
               <FolderKanban size={24} />
             </div>
+
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-extrabold font-hud tracking-wide text-white">
                   TACTICAL PROJECTS & SQUAD CAMPAIGNS
                 </h1>
+
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-chakra-500/15 text-chakra-300 border border-chakra-500/30 uppercase">
                   ACTIVE CAMPAIGNS
                 </span>
               </div>
+
               <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
                 Organize overarching objectives, milestone roadmaps, and nested execution sub-tasks.
               </p>
@@ -125,24 +135,35 @@ export const ProjectsView: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <span className="text-xs font-mono text-slate-400">
-              Active Campaigns: <strong className="text-chakra-300">{projects.length}</strong>
+              Active Campaigns:{' '}
+              <strong className="text-chakra-300">
+                {projects.length}
+              </strong>
             </span>
           </div>
         </div>
       </div>
 
-      {/* Main Grid: Campaign Cards List + Selected Campaign Detail */}
+      {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column: Projects Overview List */}
+
+        {/* Left Column */}
         <div className="space-y-3">
           <div className="text-xs font-mono text-slate-400 uppercase tracking-wider px-1">
             Active Strategic Campaigns
           </div>
 
           {projects.map((proj) => {
-            const completed = proj.subtasks.filter((s) => s.completed).length;
+            const completed = proj.subtasks.filter(
+              (s) => s.completed
+            ).length;
+
             const total = proj.subtasks.length;
-            const percent = Math.round((completed / total) * 100);
+
+            const percent = Math.round(
+              (completed / total) * 100
+            );
+
             const isSelected = proj.id === activeProjectId;
 
             return (
@@ -159,6 +180,7 @@ export const ProjectsView: React.FC = () => {
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-shinobi-900 border border-shinobi-750 text-slate-400 uppercase">
                     {proj.category}
                   </span>
+
                   <span className="text-xs font-mono text-chakra-400 font-bold">
                     +{proj.xpReward} XP
                   </span>
@@ -167,16 +189,21 @@ export const ProjectsView: React.FC = () => {
                 <h4 className="font-hud font-bold text-base text-white tracking-wide">
                   {proj.title}
                 </h4>
-                <p className="text-xs text-slate-400 mt-1 line-clamp-2">{proj.description}</p>
 
-                {/* Progress bar */}
+                <p className="text-xs text-slate-400 mt-1 line-clamp-2">
+                  {proj.description}
+                </p>
+
+                {/* Progress */}
                 <div className="mt-3 pt-3 border-t border-shinobi-800">
                   <div className="flex justify-between items-center text-xs font-mono text-slate-400 mb-1">
                     <span>PROGRESS</span>
+
                     <span className="text-leaf-400 font-bold">
                       {completed}/{total} ({percent}%)
                     </span>
                   </div>
+
                   <div className="w-full h-1.5 rounded-full bg-shinobi-950 overflow-hidden border border-shinobi-800">
                     <div
                       className="h-full bg-gradient-to-r from-cyan-500 to-chakra-400 transition-all duration-500"
@@ -189,20 +216,27 @@ export const ProjectsView: React.FC = () => {
           })}
         </div>
 
-        {/* Right 2 Columns: Detailed Selected Campaign View */}
+        {/* Right Column */}
         <div className="lg:col-span-2 space-y-4">
           <div className="hud-panel rounded-2xl p-6 border-shinobi-800 space-y-5">
+
+            {/* Campaign Header */}
             <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-shinobi-800">
               <div>
                 <span className="text-xs font-mono text-chakra-400 uppercase tracking-wider">
                   CAMPAIGN SPECIFICATION
                 </span>
+
                 <h2 className="text-2xl font-hud font-bold text-white tracking-wide mt-0.5">
                   {activeProject.title}
                 </h2>
               </div>
+
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-slate-400">Target Deadline:</span>
+                <span className="text-xs font-mono text-slate-400">
+                  Target Deadline:
+                </span>
+
                 <span className="text-xs font-mono text-amberSeal-400 font-bold">
                   {activeProject.targetDate}
                 </span>
@@ -213,38 +247,50 @@ export const ProjectsView: React.FC = () => {
               {activeProject.description}
             </p>
 
-            {/* Current Active Milestone Card */}
+            {/* Milestone */}
             <div className="p-4 rounded-xl bg-shinobi-900/80 border border-chakra-500/30 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-chakra-500/20 border border-chakra-500/40 flex items-center justify-center text-chakra-300">
                   <Target size={18} />
                 </div>
+
                 <div>
                   <div className="text-[10px] font-mono text-slate-400 uppercase">
                     Current Campaign Milestone
                   </div>
+
                   <div className="font-hud font-bold text-sm text-white">
                     {activeProject.milestone}
                   </div>
                 </div>
               </div>
+
               <div className="text-right flex-shrink-0">
-                <div className="text-xs font-mono text-leaf-400 font-bold">{activePercent}% Conquered</div>
+                <div className="text-xs font-mono text-leaf-400 font-bold">
+                  {activePercent}% Conquered
+                </div>
               </div>
             </div>
 
-            {/* Sub-tasks execution checklist */}
+            {/* Subtasks */}
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono text-slate-400 uppercase">
-                <span>Tactical Sub-Tasks ({activeCompleted}/{activeTotal})</span>
-                <span>Click to toggle execution</span>
+                <span>
+                  Tactical Sub-Tasks ({activeCompleted}/{activeTotal})
+                </span>
+
+                <span>
+                  Click to toggle execution
+                </span>
               </div>
 
               <div className="space-y-2">
                 {activeProject.subtasks.map((st) => (
                   <div
                     key={st.id}
-                    onClick={() => toggleSubtask(activeProject.id, st.id)}
+                    onClick={() =>
+                      toggleSubtask(activeProject.id, st.id)
+                    }
                     className={`cursor-pointer p-3.5 rounded-xl border flex items-center gap-3 transition-all duration-200 ${
                       st.completed
                         ? 'bg-leaf-950/20 border-leaf-500/40 text-slate-400'
@@ -260,9 +306,12 @@ export const ProjectsView: React.FC = () => {
                     >
                       ✓
                     </div>
+
                     <span
                       className={`text-xs sm:text-sm font-semibold tracking-wide ${
-                        st.completed ? 'line-through text-slate-500' : 'text-slate-200'
+                        st.completed
+                          ? 'line-through text-slate-500'
+                          : 'text-slate-200'
                       }`}
                     >
                       {st.title}
@@ -271,6 +320,7 @@ export const ProjectsView: React.FC = () => {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>
