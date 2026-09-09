@@ -101,7 +101,7 @@ export const PlaceholderView: React.FC<PlaceholderViewProps> = ({ type }) => {
         <div>
           <button
             onClick={() => setActiveTab('command-center')}
-            className="inline-flex items-center gap-2 py-2.5 px-5 rounded-xl font-hud font-bold text-sm tracking-wider text-shinobi-950 bg-gradient-to-r from-chakra-400 to-cyan-300 hover:from-chakra-300 hover:to-white transition shadow-chakra"
+            className="inline-flex items-center gap-2 py-2.5 px-5 rounded-xl font-hud font-bold text-sm tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_16px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30"
           >
             <span>RETURN TO COMMAND CENTER</span>
             <ArrowRight size={16} />

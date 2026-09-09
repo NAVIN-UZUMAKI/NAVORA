@@ -87,7 +87,7 @@ export const LevelUpModal: React.FC<LevelUpModalProps> = ({
         {/* Action Button */}
         <button
           onClick={onClose}
-          className="w-full py-3 px-6 rounded-xl font-semibold text-shinobi-950 bg-gradient-to-r from-chakra-400 to-cyan-300 hover:from-chakra-300 hover:to-white transition-all shadow-chakra font-hud tracking-wider text-base flex items-center justify-center gap-2 group"
+          className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-[#2D4A3E] via-[#3A5A40] to-[#DC2626]/80 hover:from-[#3A5A40] hover:via-[#4F6F52] hover:to-[#EF4444] transition-all shadow-[0_0_18px_rgba(58,90,64,0.45)] border border-[#9CA3AF]/30 font-hud tracking-wider text-base flex items-center justify-center gap-2 group"
         >
           <span>EMBRACE NEW POWER</span>
           <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

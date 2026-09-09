@@ -23,29 +23,29 @@ export const ChakraBar: React.FC<ChakraBarProps> = ({
 
   const variantConfig = {
     chakra: {
-      bar: 'bg-gradient-to-r from-cyan-500 via-chakra-400 to-chakra-300',
-      glow: 'shadow-[0_0_15px_rgba(0,240,255,0.4)]',
-      text: 'text-chakra-300',
-      bg: 'bg-shinobi-900 border-chakra-500/20',
-    },
+  bar: 'bg-gradient-to-r from-[#2D4A3E] via-[#3A5A40] to-[#06B6D4]',
+  glow: 'shadow-[0_0_15px_rgba(58,90,64,0.45)]',
+  text: 'text-[#06B6D4]',
+  bg: 'bg-[#111827] border-[#3A5A40]/40',
+},
     flame: {
-      bar: 'bg-gradient-to-r from-rose-600 via-flame-500 to-rose-400',
-      glow: 'shadow-[0_0_15px_rgba(255,42,95,0.4)]',
-      text: 'text-flame-300',
-      bg: 'bg-shinobi-900 border-flame-500/20',
-    },
-    amber: {
-      bar: 'bg-gradient-to-r from-amber-600 via-amberSeal-500 to-amber-300',
-      glow: 'shadow-[0_0_15px_rgba(245,158,11,0.4)]',
-      text: 'text-amber-300',
-      bg: 'bg-shinobi-900 border-amberSeal-500/20',
-    },
-    emerald: {
-      bar: 'bg-gradient-to-r from-emerald-600 via-leaf-500 to-emerald-300',
-      glow: 'shadow-[0_0_15px_rgba(16,185,129,0.4)]',
-      text: 'text-leaf-300',
-      bg: 'bg-shinobi-900 border-leaf-500/20',
-    },
+  bar: 'bg-gradient-to-r from-[#991B1B] via-[#DC2626] to-[#EF4444]',
+  glow: 'shadow-[0_0_15px_rgba(220,38,38,0.4)]',
+  text: 'text-[#EF4444]',
+  bg: 'bg-[#111827] border-[#DC2626]/25',
+},
+amber: {
+  bar: 'bg-gradient-to-r from-[#8B6B1F] via-[#D4A72C] to-[#E5C65A]',
+  glow: 'shadow-[0_0_15px_rgba(212,167,44,0.35)]',
+  text: 'text-[#E5C65A]',
+  bg: 'bg-[#111827] border-[#D4A72C]/25',
+},
+emerald: {
+  bar: 'bg-gradient-to-r from-[#263D31] via-[#3A5A40] to-[#4F6F52]',
+  glow: 'shadow-[0_0_15px_rgba(58,90,64,0.4)]',
+  text: 'text-[#9CA3AF]',
+  bg: 'bg-[#111827] border-[#3A5A40]/30',
+},
   };
 
   const current = variantConfig[variant];

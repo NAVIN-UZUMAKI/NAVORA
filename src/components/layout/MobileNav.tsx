@@ -39,7 +39,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ onOpenCreateMission }) => 
       {/* Floating Center Action Button */}
       <button
         onClick={onOpenCreateMission}
-        className="relative -top-2 w-11 h-11 rounded-full bg-gradient-to-r from-chakra-400 to-cyan-300 text-shinobi-950 flex items-center justify-center shadow-chakra active:scale-95 transition"
+        className="relative -top-2 w-11 h-11 rounded-full bg-gradient-to-br from-[#2D4A3E] to-[#3A5A40] text-white flex items-center justify-center shadow-[0_0_16px_rgba(58,90,64,0.5)] border border-[#9CA3AF]/40 active:scale-95 transition"
         aria-label="Create Mission"
       >
         <Plus size={20} className="stroke-[2.5]" />

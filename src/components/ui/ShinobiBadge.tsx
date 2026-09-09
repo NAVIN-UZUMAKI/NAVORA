@@ -77,19 +77,23 @@ interface DifficultyBadgeProps {
 
 export const DifficultyBadge: React.FC<DifficultyBadgeProps> = ({ difficulty, size = 'md' }) => {
   const getStyles = () => {
-    switch (difficulty) {
-      case 'D-Rank':
-        return 'border-leaf-500/30 bg-leaf-500/10 text-leaf-300 shadow-[0_0_8px_rgba(16,185,129,0.15)]';
-      case 'C-Rank':
-        return 'border-cyan-500/30 bg-cyan-500/10 text-cyan-300 shadow-[0_0_8px_rgba(6,182,212,0.15)]';
-      case 'B-Rank':
-        return 'border-blue-500/30 bg-blue-500/10 text-blue-300 shadow-[0_0_8px_rgba(59,130,246,0.2)]';
-      case 'A-Rank':
-        return 'border-purple-500/40 bg-purple-500/10 text-purple-300 shadow-[0_0_12px_rgba(168,85,247,0.2)]';
-      case 'S-Rank':
-        return 'border-flame-500/50 bg-flame-500/15 text-flame-300 shadow-[0_0_15px_rgba(255,42,95,0.25)] font-bold';
-    }
-  };
+  switch (difficulty) {
+    case 'D-Rank':
+      return 'border-[#4F6F52]/50 bg-[#2D4A3E]/20 text-[#9CA3AF] shadow-[0_0_8px_rgba(58,90,64,0.15)]';
+
+    case 'C-Rank':
+      return 'border-[#3A5A40]/60 bg-[#3A5A40]/20 text-[#E5E7EB] shadow-[0_0_8px_rgba(58,90,64,0.2)]';
+
+    case 'B-Rank':
+      return 'border-[#06B6D4]/40 bg-[#06B6D4]/10 text-[#67E8F9] shadow-[0_0_10px_rgba(6,182,212,0.18)]';
+
+    case 'A-Rank':
+      return 'border-[#9CA3AF]/50 bg-[#9CA3AF]/10 text-[#E5E7EB] shadow-[0_0_12px_rgba(156,163,175,0.18)]';
+
+    case 'S-Rank':
+      return 'border-[#DC2626]/60 bg-[#DC2626]/15 text-[#EF4444] shadow-[0_0_15px_rgba(220,38,38,0.28)] font-bold';
+  }
+};
 
   return (
     <span

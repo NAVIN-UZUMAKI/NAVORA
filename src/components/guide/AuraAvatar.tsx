@@ -22,9 +22,9 @@ export const AuraAvatar: React.FC<AuraAvatarProps> = ({
   };
 
   const haloByMood: Record<GuideMood, string> = {
-    gentle: 'from-violet-500/50 via-purple-500/30 to-transparent',
-    encouraging: 'from-fuchsia-500/60 via-violet-500/40 to-transparent',
-    focused: 'from-indigo-500/60 via-violet-500/40 to-transparent',
+    gentle: 'from-[#7C3AED]/45 via-[#4F6F52]/25 to-transparent',
+encouraging: 'from-[#DC2626]/45 via-[#7C3AED]/30 to-transparent',
+focused: 'from-[#06B6D4]/40 via-[#7C3AED]/30 to-transparent',
     firm: 'from-red-500/60 via-rose-500/40 to-transparent',
   };
 
@@ -47,7 +47,7 @@ export const AuraAvatar: React.FC<AuraAvatarProps> = ({
           />
 
           <div
-            className={`absolute -inset-1 rounded-full border border-violet-400/20 transition-all duration-700 ${
+            className={`absolute -inset-1 rounded-full border border-[#7C3AED]/25 transition-all duration-700 ${
               mood === 'firm'
                 ? 'shadow-[0_0_20px_rgba(239,68,68,0.25)]'
                 : 'shadow-[0_0_20px_rgba(139,92,246,0.25)]'
@@ -57,7 +57,7 @@ export const AuraAvatar: React.FC<AuraAvatarProps> = ({
       )}
 
       {/* NAVORA character frame */}
-      <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-violet-400 via-purple-700 to-red-500/60 shadow-[0_0_25px_rgba(124,58,237,0.25)]">
+      <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-[#7C3AED] via-[#3A5A40] to-[#DC2626]/70 shadow-[0_0_25px_rgba(124,58,237,0.22)]">
         <div className="relative w-full h-full overflow-hidden rounded-full bg-[#090711]">
           <svg
             viewBox="0 0 120 120"

@@ -82,7 +82,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onOpenCreateMission 
             {onOpenCreateMission && (
               <button
                 onClick={onOpenCreateMission}
-                className="ml-2 inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl font-hud font-bold text-xs tracking-wider text-shinobi-950 bg-gradient-to-r from-chakra-400 to-cyan-300 hover:from-chakra-300 hover:to-white transition shadow-chakra"
+                className="ml-2 inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_14px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30"
               >
                 <Plus size={14} />
                 <span>SCHEDULE</span>
