@@ -13,9 +13,9 @@
 
   :root {
     /* Core Shinobi Palette */
-    --leaf: #3A5A40;
-    --leaf-light: #4F6F52;
-    --leaf-dark: #263D31;
+    --leaf: #f97316;
+--leaf-light: #fb923c;
+--leaf-dark: #c2410c;
 
     --navy: #111827;
     --navy-deep: #0B1018;
@@ -43,7 +43,7 @@
 
     /* Borders */
     --border: rgba(156, 163, 175, 0.16);
-    --border-leaf: rgba(58, 90, 64, 0.65);
+    --border-leaf: rgba(249, 115, 22, 0.45);
     --border-metal: rgba(156, 163, 175, 0.28);
     --border-red: rgba(220, 38, 38, 0.45);
   }
@@ -285,8 +285,8 @@
     background:
       linear-gradient(
         135deg,
-        #3A5A40,
-        #2D4A3E
+        #f97316,
+        #c2410c
       );
 
     border: 1px solid rgba(156, 163, 175, 0.2);
@@ -307,8 +307,8 @@
     background:
       linear-gradient(
         135deg,
-        #4F6F52,
-        #3A5A40
+        #fb923c,
+        #f97316
       );
 
     transform: translateY(-1px);
@@ -498,7 +498,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #4F6F52;
+    background: #fb923c;
   }
 
   * {

@@ -196,7 +196,7 @@ export const AiCompanionView: React.FC = () => {
           />
           <button
             type="submit"
-            className="py-2.5 px-4 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_16px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30 flex items-center gap-1.5"
+            className="py-2.5 px-4 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_16px_rgba(249,115,22,0.4)] border border-[#9CA3AF]/30 flex items-center gap-1.5"
           >
             <span>CONSULT</span>
             <Send size={14} />

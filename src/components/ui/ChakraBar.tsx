@@ -23,10 +23,10 @@ export const ChakraBar: React.FC<ChakraBarProps> = ({
 
   const variantConfig = {
     chakra: {
-  bar: 'bg-gradient-to-r from-[#2D4A3E] via-[#3A5A40] to-[#06B6D4]',
-  glow: 'shadow-[0_0_15px_rgba(58,90,64,0.45)]',
+  bar: 'bg-gradient-to-r from-[#c2410c] via-[#f97316] to-[#06B6D4]',
+  glow: 'shadow-[0_0_15px_rgba(0,240,255,0.45)]',
   text: 'text-[#06B6D4]',
-  bg: 'bg-[#111827] border-[#3A5A40]/40',
+  bg: 'bg-[#111827] border-[#f97316]/40',
 },
     flame: {
   bar: 'bg-gradient-to-r from-[#991B1B] via-[#DC2626] to-[#EF4444]',
@@ -41,10 +41,10 @@ amber: {
   bg: 'bg-[#111827] border-[#D4A72C]/25',
 },
 emerald: {
-  bar: 'bg-gradient-to-r from-[#263D31] via-[#3A5A40] to-[#4F6F52]',
-  glow: 'shadow-[0_0_15px_rgba(58,90,64,0.4)]',
+  bar: 'bg-gradient-to-r from-[#06B6D4] via-[#00F0FF] to-[#06B6D4]',
+  glow: 'shadow-[0_0_15px_rgba(249,115,22,0.4)]',
   text: 'text-[#9CA3AF]',
-  bg: 'bg-[#111827] border-[#3A5A40]/30',
+  bg: 'bg-[#111827] border-[#f97316]/30',
 },
   };
 

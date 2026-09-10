@@ -83,7 +83,7 @@ export const SettingsView: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="py-2 px-4 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_14px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30 flex items-center gap-1"
+                  className="py-2 px-4 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_14px_rgba(249,115,22,0.4)] border border-[#9CA3AF]/30 flex items-center gap-1"
                 >
                   {nameSaved ? <Check size={14} /> : 'UPDATE'}
                 </button>
@@ -151,7 +151,7 @@ export const SettingsView: React.FC = () => {
 
           <button
             onClick={restartTutorial}
-            className="flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl font-hud font-bold text-xs sm:text-sm tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_16px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30 flex-shrink-0"
+            className="flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl font-hud font-bold text-xs sm:text-sm tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_16px_rgba(249,115,22,0.4)] border border-[#9CA3AF]/30 flex-shrink-0"
           >
             <Compass size={16} />
             <span>RESTART 9-STEP ORIENTATION</span>

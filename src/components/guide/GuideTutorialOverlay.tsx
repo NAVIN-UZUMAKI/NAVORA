@@ -208,7 +208,7 @@ export const GuideTutorialOverlay: React.FC = () => {
 
             <button
               onClick={nextStep}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl font-hud font-bold text-xs sm:text-sm tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_16px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl font-hud font-bold text-xs sm:text-sm tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_16px_rgba(249,115,22,0.4)] border border-[#9CA3AF]/30"
             >
               <span>{isLastStep ? 'FINISH ORIENTATION' : 'NEXT STEP'}</span>
               <ArrowRight size={15} />

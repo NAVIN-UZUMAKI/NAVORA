@@ -22,7 +22,7 @@ export const AuraAvatar: React.FC<AuraAvatarProps> = ({
   };
 
   const haloByMood: Record<GuideMood, string> = {
-    gentle: 'from-[#7C3AED]/45 via-[#4F6F52]/25 to-transparent',
+    gentle: 'from-[#7C3AED]/45 via-[#fb923c]/25 to-transparent',
 encouraging: 'from-[#DC2626]/45 via-[#7C3AED]/30 to-transparent',
 focused: 'from-[#06B6D4]/40 via-[#7C3AED]/30 to-transparent',
     firm: 'from-red-500/60 via-rose-500/40 to-transparent',
@@ -57,7 +57,7 @@ focused: 'from-[#06B6D4]/40 via-[#7C3AED]/30 to-transparent',
       )}
 
       {/* NAVORA character frame */}
-      <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-[#7C3AED] via-[#3A5A40] to-[#DC2626]/70 shadow-[0_0_25px_rgba(124,58,237,0.22)]">
+      <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-[#7C3AED] via-[#f97316] to-[#DC2626]/70 shadow-[0_0_25px_rgba(124,58,237,0.22)]">
         <div className="relative w-full h-full overflow-hidden rounded-full bg-[#090711]">
           <svg
             viewBox="0 0 120 120"

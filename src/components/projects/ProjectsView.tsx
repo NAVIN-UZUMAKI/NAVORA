@@ -206,7 +206,7 @@ export const ProjectsView: React.FC = () => {
 
                   <div className="w-full h-1.5 rounded-full bg-shinobi-950 overflow-hidden border border-shinobi-800">
                     <div
-                      className="h-full bg-gradient-to-r from-[#2D4A3E] to-[#4F6F52] transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-[#c2410c] to-[#fb923c] transition-all duration-500"
                       style={{ width: `${percent}%` }}
                     />
                   </div>

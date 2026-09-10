@@ -45,13 +45,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
       {/* Top Banner / Persona HUD Card */}
       <div
         data-tutorial="command-persona"
-        className="hud-panel rounded-2xl p-5 sm:p-7 border-[#3A5A40]/50 relative overflow-hidden"
+        className="hud-panel rounded-2xl p-5 sm:p-7 border-[#f97316]/50 relative overflow-hidden"
       >
         <div className="hud-corner-tl" />
         <div className="hud-corner-br" />
 
         {/* Ambient background glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#3A5A40]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#f97316]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           {/* User Persona & Rank */}
@@ -66,11 +66,11 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
             <div className="flex flex-wrap items-baseline gap-3">
               <h1 className="text-3xl sm:text-4xl font-extrabold font-hud tracking-tight text-white">
                 WELCOME,{' '}
-                <span className="text-[#4F6F52]">{user.name}</span>
+                <span className="text-[#fb923c]">{user.name}</span>
               </h1>
 
               <div className="flex items-center gap-2">
-                <span className="font-mono font-bold text-sm px-2.5 py-0.5 rounded bg-[#111827] border border-[#3A5A40]/40 text-[#E5E7EB]">
+                <span className="font-mono font-bold text-sm px-2.5 py-0.5 rounded bg-[#111827] border border-[#f97316]/40 text-[#E5E7EB]">
                   LVL {user.level}
                 </span>
 
@@ -98,7 +98,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
               <div className="flex items-center gap-2">
                 <Shield
                   size={16}
-                  className="text-[#3A5A40] flex-shrink-0"
+                  className="text-[#f97316] flex-shrink-0"
                 />
                 <span className="font-hud font-bold text-sm text-slate-200">
                   {nextRank.rank}
@@ -153,13 +153,13 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
         </div>
 
         {/* Missions Executed */}
-        <div className="hud-panel rounded-xl p-4 border-[#3A5A40]/30 bg-[#111827]/70">
+        <div className="hud-panel rounded-xl p-4 border-[#f97316]/30 bg-[#111827]/70">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
               Missions
             </span>
 
-            <div className="w-7 h-7 rounded-lg bg-[#3A5A40]/15 border border-[#3A5A40]/40 flex items-center justify-center text-[#9CA3AF]">
+            <div className="w-7 h-7 rounded-lg bg-[#f97316]/15 border border-[#f97316]/40 flex items-center justify-center text-[#9CA3AF]">
               <CheckCircle2 size={16} />
             </div>
           </div>
@@ -241,7 +241,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-[#4F6F52] animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[#fb923c] animate-pulse" />
 
               <h2 className="text-xl font-bold font-hud tracking-wide text-white">
                 TODAY'S MISSION SCROLLS
@@ -251,7 +251,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={onOpenCreateMission}
-                className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_14px_rgba(58,90,64,0.4)] border border-[#9CA3AF]/30"
+                className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_14px_rgba(249,115,22,0.4)] border border-[#9CA3AF]/30"
               >
                 <Plus size={14} />
                 <span>NEW MISSION</span>
@@ -259,7 +259,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
               <button
                 onClick={() => setActiveTab('missions')}
-                className="hidden sm:inline-flex items-center gap-1 py-1.5 px-3 rounded-xl border border-[#4B5563] bg-[#111827]/80 hover:border-[#3A5A40]/60 text-xs font-mono text-slate-300 transition"
+                className="hidden sm:inline-flex items-center gap-1 py-1.5 px-3 rounded-xl border border-[#4B5563] bg-[#111827]/80 hover:border-[#f97316]/60 text-xs font-mono text-slate-300 transition"
               >
                 <span>Full Board</span>
                 <ArrowRight size={13} />
@@ -283,7 +283,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
               <button
                 onClick={onOpenCreateMission}
-                className="mt-2 py-2 px-4 rounded-xl text-xs font-bold font-hud tracking-wider bg-[#3A5A40]/20 border border-[#3A5A40]/50 text-[#9CA3AF] hover:bg-[#3A5A40]/30 transition"
+                className="mt-2 py-2 px-4 rounded-xl text-xs font-bold font-hud tracking-wider bg-[#f97316]/20 border border-[#f97316]/50 text-[#9CA3AF] hover:bg-[#f97316]/30 transition"
               >
                 Inscribe Mission
               </button>
@@ -415,7 +415,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
               <div className="w-full h-2 rounded-full bg-[#111827] overflow-hidden border border-[#4B5563]">
                 <div
-                  className="h-full bg-gradient-to-r from-[#2D4A3E] to-[#4F6F52] transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#c2410c] to-[#fb923c] transition-all duration-500"
                   style={{ width: `${stats.completionRate}%` }}
                 />
               </div>

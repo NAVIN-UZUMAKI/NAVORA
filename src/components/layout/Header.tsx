@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu, onOpenCreateMi
             <Zap size={14} className="text-chakra-400" />
             <div className="w-16 h-1.5 rounded-full bg-shinobi-950 overflow-hidden border border-chakra-500/20">
               <div
-                className="h-full bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] shadow-[0_0_12px_rgba(58,90,64,0.35)]"
+                className="h-full bg-gradient-to-r from-[#c2410c] to-[#f97316] shadow-[0_0_12px_rgba(249,115,22,0.35)]"
                 style={{ width: `${user.chakraEnergy}%` }}
               />
             </div>
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu, onOpenCreateMi
           {/* Quick Mission Creation Button */}
           <button
             onClick={onOpenCreateMission}
-            className="hidden sm:inline-flex items-center gap-1.5 py-1.5 px-3 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#2D4A3E] to-[#3A5A40] hover:from-[#3A5A40] hover:to-[#4F6F52] transition shadow-[0_0_14px_rgba(58,90,64,0.35)] border border-[#9CA3AF]/30"
+            className="hidden sm:inline-flex items-center gap-1.5 py-1.5 px-3 rounded-xl font-hud font-bold text-xs tracking-wider text-white bg-gradient-to-r from-[#c2410c] to-[#f97316] hover:from-[#f97316] hover:to-[#fb923c] transition shadow-[0_0_14px_rgba(249,115,22,0.35)] border border-[#9CA3AF]/30"
           >
             <Plus size={14} />
             <span>NEW MISSION</span>
