@@ -54,8 +54,56 @@ export const AiCompanionView: React.FC = () => {
 
       const lower = text.toLowerCase();
 
-      // PRIORITY INTELLIGENCE
+      // WORKLOAD MANAGEMENT INTELLIGENCE
       if (
+        lower.includes('too much') ||
+        lower.includes('too many missions') ||
+        lower.includes('too many tasks') ||
+        lower.includes('overwhelmed') ||
+        lower.includes('overloaded') ||
+        lower.includes('reduce my workload') ||
+        lower.includes('manage my workload') ||
+        lower.includes('help me manage') ||
+        lower.includes('help me reduce')
+      ) {
+        const rankedMissions = rankActiveMissions(missions);
+        const activeCount = rankedMissions.length;
+
+        if (activeCount === 0) {
+          replyMood = 'encouraging';
+
+          reply =
+            `Your workload is currently clear, ${user.name}. ` +
+            `You have no active missions to manage right now. ` +
+            `Take a moment to recharge or create one focused objective.`;
+        } else if (activeCount === 1) {
+          replyMood = 'encouraging';
+
+          const { mission } = rankedMissions[0];
+
+          reply =
+            `Your workload is manageable, ${user.name}. ` +
+            `You only have one active mission: "${mission.title}". ` +
+            `Focus on this single objective instead of worrying about the whole workload. ` +
+            `Once it is complete, reassess what comes next.`;
+        } else {
+          replyMood = 'focused';
+
+          const topMission = rankedMissions[0];
+          const secondMission = rankedMissions[1];
+
+          reply =
+            `You have ${activeCount} active missions, ${user.name}. ` +
+            `Do not try to attack everything at once. ` +
+            `Keep "${topMission.mission.title}" as your first objective because it has the highest priority. ` +
+            `After that, move to "${secondMission.mission.title}". ` +
+            `Let the remaining ${activeCount - 2} mission${activeCount - 2 === 1 ? '' : 's'} wait until these are handled. ` +
+            `One objective at a time.`;
+        }
+      }
+
+      // PRIORITY INTELLIGENCE
+      else if (
         lower.includes('next') ||
         lower.includes('priorit') ||
         lower.includes('what should i do') ||
