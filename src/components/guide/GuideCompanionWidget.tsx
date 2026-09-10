@@ -27,21 +27,74 @@ export const GuideCompanionWidget: React.FC = () => {
     );
   };
 
-  const handlePlanNext = () => {
+      const handlePlanNext = () => {
     if (activeMissions.length === 0) {
       setCurrentMood('encouraging');
       setSpeech(
         `Remarkable discipline, ${user.name}! You have cleared all pending mission scrolls. Take a moment to replenish your chakra or inscribe tomorrow's training objectives.`
       );
-    } else {
-      const topMission = activeMissions[0];
-      setCurrentMood('focused');
-      setSpeech(
-        `Tactical priority identified: "${topMission.title}" (${topMission.difficulty}, +${topMission.xpReward} XP). Execute this first to maintain your ${user.streak}-day streak.`
-      );
+      return;
     }
-  };
 
+    const now = new Date();
+
+    const difficultyWeight: Record<string, number> = {
+      'D-Rank': 1,
+      'C-Rank': 2,
+      'B-Rank': 3,
+      'A-Rank': 4,
+      'S-Rank': 5,
+    };
+
+    const rankedMissions = [...activeMissions].sort((a, b) => {
+      const aDue = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+      const bDue = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
+
+      const aOverdue = aDue < now.getTime();
+      const bOverdue = bDue < now.getTime();
+
+      // 1. Overdue missions first
+      if (aOverdue !== bOverdue) {
+        return aOverdue ? -1 : 1;
+      }
+
+      // 2. Nearest due date
+      if (aDue !== bDue) {
+        return aDue - bDue;
+      }
+
+      // 3. Higher XP reward
+      if (a.xpReward !== b.xpReward) {
+        return b.xpReward - a.xpReward;
+      }
+
+      // 4. Higher difficulty
+      const aDifficulty = difficultyWeight[a.difficulty] ?? 0;
+      const bDifficulty = difficultyWeight[b.difficulty] ?? 0;
+
+      if (aDifficulty !== bDifficulty) {
+        return bDifficulty - aDifficulty;
+      }
+
+      // 5. Older mission first
+      return (
+        new Date(a.createdAt).getTime() -
+        new Date(b.createdAt).getTime()
+      );
+    });
+
+    const topMission = rankedMissions[0];
+
+    setCurrentMood('focused');
+
+    const dueMessage = topMission.dueDate
+      ? ` It is due ${new Date(topMission.dueDate).toLocaleDateString()}.`
+      : '';
+
+    setSpeech(
+      `Tactical priority identified: "${topMission.title}" (${topMission.difficulty}, +${topMission.xpReward} XP).${dueMessage} Let's focus on this objective first.`
+    );
+  };
   const handleConsultSensei = () => {
     setActiveTab('ai-companion');
     setIsOpen(false);
