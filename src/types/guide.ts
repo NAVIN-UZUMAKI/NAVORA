@@ -1,6 +1,12 @@
 import type { NavigationTab } from './index';
 
-export type GuideMood = 'gentle' | 'encouraging' | 'focused' | 'firm';
+export type GuideMood =
+  | 'gentle'
+  | 'encouraging'
+  | 'focused'
+  | 'firm'
+  | 'upset'
+  | 'celebrating';
 
 export interface TutorialStep {
   id: string;

@@ -75,6 +75,15 @@ export const NavoraProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setMissions(updatedMissions);
 
     if (mission.status === 'completed' && previousStatus === 'active') {
+      window.dispatchEvent(
+  new CustomEvent('navora:mission-completed', {
+    detail: {
+      missionId: mission.id,
+      missionTitle: mission.title,
+      xpReward: mission.xpReward,
+    },
+  })
+);
       // Award XP
       audioService.playMissionComplete();
       const xpResult = userRepository.addXp(mission.xpReward);
