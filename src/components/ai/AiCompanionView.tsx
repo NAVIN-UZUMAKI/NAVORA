@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Send, Sparkles, Target, Flame, Zap } from 'lucide-react';
 import { useNavora } from '../../context/useNavora';
 import { AuraAvatar } from '../guide/AuraAvatar';
+import {
+  getTopPriorityMission,
+  rankActiveMissions,
+} from '../../services/missionPriorityService';
 import type { GuideMood } from '../../types/guide';
 
 interface Message {
@@ -25,13 +29,11 @@ export const AiCompanionView: React.FC = () => {
     },
   ]);
 
-  const activeMissions = missions.filter((m) => m.status === 'active');
-
   const handleSendMessage = (textToSend?: string) => {
     const text = (textToSend || input).trim();
+
     if (!text) return;
 
-    // AURA becomes focused immediately while processing the message.
     setActiveMood('focused');
 
     const newMsg: Message = {
@@ -46,44 +48,133 @@ export const AiCompanionView: React.FC = () => {
       setInput('');
     }
 
-    // Context-aware simulated response
     setTimeout(() => {
       let reply = `A disciplined inquiry, ${user.name}. Direct your focus to breaking this into bite-sized D-Rank or C-Rank katas. Consistency builds legendary chakra reserves.`;
       let replyMood: GuideMood = 'gentle';
 
       const lower = text.toLowerCase();
 
+      // PRIORITY INTELLIGENCE
       if (
+        lower.includes('next') ||
+        lower.includes('priorit') ||
+        lower.includes('what should i do') ||
+        lower.includes('what do i do first') ||
+        lower.includes('which mission')
+      ) {
+        replyMood = 'focused';
+
+        const topPriority = getTopPriorityMission(missions);
+
+        if (topPriority) {
+          const { mission, priority, score, reasons } = topPriority;
+
+          const reasonText =
+            reasons.length > 0
+              ? reasons.slice(0, 2).join(' and ')
+              : 'its overall priority score';
+
+          reply =
+            `Your highest-priority mission is "${mission.title}". ` +
+            `${mission.difficulty} difficulty with +${mission.xpReward} XP. ` +
+            `Priority level: ${priority.toUpperCase()} (score ${score}). ` +
+            `I'm recommending it because of ${reasonText}. ` +
+            `Let's focus on this objective first.`;
+        } else {
+          replyMood = 'encouraging';
+
+          reply =
+            `All active missions have been cleared, ${user.name}! ` +
+            `You can create a new mission, plan tomorrow's objectives, ` +
+            `or take some time to recharge.`;
+        }
+      }
+
+      // URGENCY / DEADLINE INTELLIGENCE
+      else if (
+        lower.includes('urgent') ||
+        lower.includes('urgency') ||
+        lower.includes('deadline') ||
+        lower.includes('due soon') ||
+        lower.includes('due today') ||
+        lower.includes('overdue')
+      ) {
+        replyMood = 'focused';
+
+        const rankedMissions = rankActiveMissions(missions);
+
+        const urgentMissions = rankedMissions.filter((result) =>
+          result.reasons.some(
+            (reason) =>
+              reason === 'Overdue' ||
+              reason === 'Due within 6 hours' ||
+              reason === 'Due today'
+          )
+        );
+
+        if (urgentMissions.length > 0) {
+          const urgentMission = urgentMissions[0];
+          const { mission, reasons } = urgentMission;
+
+          reply =
+            `I found an urgent objective: "${mission.title}". ` +
+            `${reasons[0]}. ` +
+            `It is ${mission.difficulty} and gives +${mission.xpReward} XP. ` +
+            `I recommend handling this before lower-priority missions.`;
+        } else {
+          replyMood = 'encouraging';
+
+          reply =
+            `Good news, ${user.name}. I don't see any active mission that is overdue ` +
+            `or due within the next 24 hours. You have some breathing room.`;
+        }
+      }
+
+      // PROCRASTINATION INTELLIGENCE
+      else if (
         lower.includes('procrastinat') ||
         lower.includes('stuck') ||
         lower.includes('lazy') ||
         lower.includes('tired')
       ) {
         replyMood = 'firm';
-        reply = `Navin, listen to me closely. Do not let resistance dictate your destiny. Close all distracting scrolls, pick one small mission, and work for only 5 minutes. The barrier is entirely mental. I am right beside you.`;
-      } else if (
-        lower.includes('next') ||
-        lower.includes('priorit') ||
-        lower.includes('what should i do')
-      ) {
-        replyMood = 'focused';
 
-        if (activeMissions.length > 0) {
-          const top = activeMissions[0];
+        const topPriority = getTopPriorityMission(missions);
 
-          reply = `Based on your telemetry, execute "${top.title}" (${top.difficulty}, +${top.xpReward} XP). Conquering this will immediately push your level progression forward.`;
+        if (topPriority) {
+          const { mission } = topPriority;
+
+          reply =
+            `You're procrastinating, ${user.name}, so I'm making the decision for you. ` +
+            `Start with "${mission.title}". ` +
+            `It is ${mission.difficulty} and gives +${mission.xpReward} XP. ` +
+            `Do not worry about finishing everything right now. ` +
+            `Work on this mission for just 10 minutes and get moving.`;
         } else {
           replyMood = 'encouraging';
-          reply = `All pending missions have been cleared today! Inscribe a new scroll for tomorrow or take time to replenish your energy.`;
+
+          reply =
+            `You don't have any active missions right now, ${user.name}. ` +
+            `There is nothing to procrastinate on. ` +
+            `Create one small mission and take the first step.`;
         }
-      } else if (
+      }
+
+      // STREAK / DISCIPLINE INTELLIGENCE
+      else if (
         lower.includes('streak') ||
         lower.includes('discipline')
       ) {
         replyMood = 'encouraging';
 
-        reply = `Your current streak stands at ${user.streak} days. You are forging the unyielding discipline of a true shinobi. Let's protect this flame today.`;
-      } else if (
+        reply =
+          `Your current streak stands at ${user.streak} days. ` +
+          `You are forging the unyielding discipline of a true shinobi. ` +
+          `Let's protect this flame today.`;
+      }
+
+      // POSITIVE RESPONSE
+      else if (
         lower.includes('thank') ||
         lower.includes('great') ||
         lower.includes('awesome') ||
@@ -91,7 +182,9 @@ export const AiCompanionView: React.FC = () => {
       ) {
         replyMood = 'encouraging';
 
-        reply = `You're very welcome, ${user.name}. I'm always here to help you move forward, one step at a time. Keep your focus and trust your progress.`;
+        reply =
+          `You're very welcome, ${user.name}. I'm always here to help you move forward, ` +
+          `one step at a time. Keep your focus and trust your progress.`;
       }
 
       setActiveMood(replyMood);
@@ -117,15 +210,12 @@ export const AiCompanionView: React.FC = () => {
       data-tutorial="ai-companion-view"
       className="space-y-6 animate-fadeIn pb-16 lg:pb-8 max-w-4xl mx-auto"
     >
-      {/* Header with Aura Showcase */}
       <div className="hud-panel rounded-2xl p-6 border-chakra-500/40 relative overflow-hidden">
         <div className="hud-corner-tl" />
         <div className="hud-corner-br" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-
-            {/* Main AURA - larger display */}
             <AuraAvatar
               mood={activeMood}
               size="xxl"
@@ -157,10 +247,7 @@ export const AiCompanionView: React.FC = () => {
         </div>
       </div>
 
-      {/* Chat Terminal Frame */}
       <div className="hud-panel rounded-2xl border-shinobi-800 flex flex-col h-[520px] overflow-hidden">
-
-        {/* Terminal Header */}
         <div className="px-4 py-2.5 border-b border-shinobi-800 bg-shinobi-950/70 flex items-center justify-between font-mono text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-leaf-400 animate-pulse" />
@@ -172,7 +259,6 @@ export const AiCompanionView: React.FC = () => {
           </span>
         </div>
 
-        {/* Message Log */}
         <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4">
           {messages.map((m, idx) => (
             <div
@@ -214,9 +300,7 @@ export const AiCompanionView: React.FC = () => {
           ))}
         </div>
 
-        {/* Quick Tactical Prompt Chips */}
         <div className="px-3 pt-2 pb-1 border-t border-shinobi-800/80 bg-shinobi-950/60 flex items-center gap-2 overflow-x-auto">
-
           <button
             onClick={() =>
               handleQuickPrompt('What should I prioritize next?')
@@ -252,7 +336,6 @@ export const AiCompanionView: React.FC = () => {
           </button>
         </div>
 
-        {/* Input Bar */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -269,7 +352,6 @@ export const AiCompanionView: React.FC = () => {
 
               setInput(value);
 
-              // AURA changes expression while the user is typing.
               if (value.trim()) {
                 setActiveMood('focused');
               } else {
