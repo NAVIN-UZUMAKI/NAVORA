@@ -18,6 +18,8 @@ import { CreateMissionModal } from './components/missions/CreateMissionModal';
 import { LevelUpModal } from './components/ui/LevelUpModal';
 import { GuideTutorialOverlay } from './components/guide/GuideTutorialOverlay';
 import { GuideCompanionWidget } from './components/guide/GuideCompanionWidget';
+import OnboardingFlow from './components/onboarding/OnboardingFlow';
+import { onboardingService } from './services/onboardingService';
 
 const MainLayout: React.FC = () => {
   const { activeTab, levelUpInfo, dismissLevelUp } = useNavora();
@@ -101,6 +103,18 @@ const MainLayout: React.FC = () => {
 };
 
 export function App() {
+  const [onboardingComplete, setOnboardingComplete] = useState(
+    () => onboardingService.isCompleted()
+  );
+
+  if (!onboardingComplete) {
+    return (
+      <OnboardingFlow
+        onComplete={() => setOnboardingComplete(true)}
+      />
+    );
+  }
+
   return (
     <NavoraProvider>
       <GuideProvider>

@@ -32,7 +32,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpenMobile = false, onCloseM
     { id: 'notes', label: 'Scroll Archive', icon: FileText },
     { id: 'achievements', label: 'Achievements', icon: Award },
     { id: 'statistics', label: 'Tactical Stats', icon: BarChart3 },
-    { id: 'ai-companion', label: 'AI Shinobi Sensei', icon: Bot, badge: 'AI' },
+    { id: 'ai-companion', label: 'AURA', icon: Bot, badge: 'AI' },
     { id: 'settings', label: 'System Settings', icon: Settings },
   ];
 
